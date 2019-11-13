@@ -1,3 +1,4 @@
-helloGIT MASTER branch
+new line from f2 to master 
+
 new line 
 2 new line 
