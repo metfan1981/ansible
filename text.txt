@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-helloGIT f2 branch
-=======
 helloGIT MASTER branch
->>>>>>> master
 new line 
 2 new line 
