@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+echo Specify your number, please
+echo
+read usr_num
+echo
+echo "Comparing with 100..."
+echo
+echo
+echo
+if [ $usr_num -ge 100 ]; then
+echo "$usr_num is bigger/equal than 100"
+else
+echo "$usr_num is less than 100"
+fi
