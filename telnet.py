@@ -18,3 +18,8 @@ tn.write(b"exit\n")
 
 result = tn.read_all().decode()
 print(result)
+
+with open("connection.txt", "w") as f:
+    f.write(result)
+
+print("Done!")
