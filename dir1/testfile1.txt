@@ -1,4 +1,6 @@
 ...
+master changes 2nd line
 added in test branch
 3rd master line
+master changes 5th line
 added in test branch
