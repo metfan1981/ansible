@@ -1,13 +1,16 @@
 #!/bin/bash
-
-
-echo  Hello, what is your name, stranger?
+echo -n "Hello, what is your name, stranger: " 
 read who
 echo Nice to meet you, $who!
-echo "***********************"
-echo  How old are you, $who?
+sleep 1
+echo -n "How old are you: "
 read age
-echo So, $who is $age years old now.
-echo "***********************"
-echo Bye, $who!
 
+if [ $age -lt 21 ]
+then
+  echo "You're too yound for beer, $who!"
+else
+  echo "Take your beer, $who!"
+fi
+
+echo bye!
