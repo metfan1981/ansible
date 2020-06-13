@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+# maths tricks
+echo
+echo
+echo
+echo "So,"
+echo "Let's add 1000 to your value:"
+read usr_v
+v2=$(( $usr_v + 1000 ))
+echo $v2
+echo
+echo "great"
+echo
+echo
+echo "And then subtract 15 from value above:"
+echo
+v3=$(( $v2 - 15 ))
+echo $v3
+echo
+echo Nice!
