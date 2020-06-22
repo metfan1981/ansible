@@ -1,4 +1,0 @@
-#!/usr/bin/env bash
-# define a location
-mydir=$(pwd)
-echo $mydir
