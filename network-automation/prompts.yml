@@ -1,0 +1,29 @@
+- name: tftp_save
+  hosts: test_tftp
+  gather_facts: false
+  connection: network_cli
+
+
+  tasks:
+
+
+    - name: config_copy
+      cli_command:
+        command: 'copy bootflash: tftp:'
+        check_all: True
+        prompt: 
+          - 'Source filename'
+          - 'Address or name of remote host'
+          - 'Destination filename'
+        answer: 
+          - '{{inventory_hostname}}.cfg'
+          - '10.3.4.40'
+          - '\r'
+#        provider: "{{cli}}"
+#        authorize: yes        
+       # vars:
+        #ansible_command_timeout: 10
+      register: output
+
+    - name: print results
+      debug: var=output

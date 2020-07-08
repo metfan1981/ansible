@@ -1,0 +1,7 @@
+[web] 
+app1 ansible_host= ### IP ###
+app2 ansible_host= ### IP ###
+
+[lb]
+lb1 ansible_host=  ### IP ###
+

@@ -1,0 +1,3 @@
+<?php
+ echo "<h1> Private IP is {{ ansible_facts.eth0.ipv4.address }}, netmask is {{ ansible_facts.eth0.ipv4.netmask }}</h1>";
+?>

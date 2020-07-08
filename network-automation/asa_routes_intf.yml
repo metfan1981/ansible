@@ -1,0 +1,27 @@
+- name: Run show commands
+  hosts: asa-contexts
+  gather_facts: false
+  connection: local
+
+  tasks:
+
+    - name: run sh int ip br
+      asa_command:
+        commands: show interface ip brief
+        provider: "{{cli}}"
+        
+      register: output1
+    - debug: var=output1.stdout_lines
+      
+    - name: run sh route
+      asa_command:
+        commands: show route
+        provider: "{{cli}}"
+      register: output2
+    - debug: var=output2.stdout_lines
+
+    - name: print results
+      debug: var=output1.stdout_lines
+
+    - debug: var=output2.stdout_lines
+

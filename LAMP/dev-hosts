@@ -1,0 +1,6 @@
+[web] 
+app1 ansible_host=         #############
+
+[local] 
+control ansible_connection=local 
+

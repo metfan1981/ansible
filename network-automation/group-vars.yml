@@ -1,0 +1,12 @@
+cli:
+  host: "{{inventory_hostname}}"
+  timeout: 120
+  username: "username"
+  password: "Passowrd"
+  authorize: "yes"
+  auth_pass: "Passowrd"
+
+ansible_network_os: ios
+ansible_user: username
+ansible_password: password
+

@@ -1,0 +1,21 @@
+---
+
+  - hosts: lb
+    become: true
+    tasks:
+      - name: upload J2 template to LB
+        template:
+          src: ../lb-config.jinja2
+          dest: /etc/httpd/conf.d/lb.conf
+          owner: bin
+          group: wheel
+          mode: 064
+        notify: httpd_restart
+
+    handlers:
+      - name: httpd_restart
+        service: name=httpd state=restarted
+
+...
+
+

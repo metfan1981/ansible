@@ -1,0 +1,24 @@
+---
+
+  - hosts: web
+    become: true
+    tasks:
+      - name: install apache & php
+        yum: 
+          name:
+            - httpd
+            - php
+          state: present
+      - name: Ensure that apache started
+        service: name=httpd state=started enabled=yes
+
+
+  - hosts: lb
+    become: true
+    tasks:
+      - name: install apache on LB
+        yum: name=httpd state=present
+      - name: Ensure that apache started on LB
+        service: name=httpd state=started enabled=yes
+
+...

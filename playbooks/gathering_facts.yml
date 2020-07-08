@@ -1,0 +1,11 @@
+---
+
+  - hosts: web
+    become: true
+    gather_facts: true
+    tasks:
+      - name: output
+        debug:
+          msg: "{{ ansible_host }}"
+
+...

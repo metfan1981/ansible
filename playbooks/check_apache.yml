@@ -1,0 +1,8 @@
+---
+
+  - hosts: web:lb
+    become: true
+    tasks:
+      - name: Ensure that apache started 
+        service: name=httpd state=started enabled=yes
+...

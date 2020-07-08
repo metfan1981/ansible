@@ -1,0 +1,15 @@
+--- 
+
+  - import_playbook: update_packages.yml
+  - import_playbook: install_apache_php.yml
+
+  # generates "index.php" using jinja2 template 
+  - import_playbook: modify_webserver_settings.yml
+
+  # uses ../lb-config.jinja2 template to generate LB config dynamically
+  - import_playbook: upload_file_to_LB.yml
+
+  # adds another "info.php" page 
+  - import_playbook: second_webpage.yml
+
+...

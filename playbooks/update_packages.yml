@@ -1,0 +1,6 @@
+---
+  - hosts: web:lb
+    become: true
+    tasks:
+      - name: Update Packages
+        yum: name=* state=latest

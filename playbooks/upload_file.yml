@@ -1,0 +1,12 @@
+---
+
+  - hosts: web
+    become: true
+    tasks:
+      - name: Upload index.php to Apache directory
+        copy: 
+          src: ../index.php
+          dest: /var/www/html/index.php
+          mode: 0755
+
+...

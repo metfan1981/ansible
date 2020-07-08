@@ -1,0 +1,21 @@
+---
+
+  - hosts: web
+    become: true
+    gather_facts: true
+    tasks:
+      - name: upload J2 template to WEBs
+        template:
+          src: ../web2.jinja2
+          dest: /var/www/html/index.php
+          mode: 0755
+        notify: httpd_restart
+
+    handlers:
+      - name: httpd_restart
+        service: name=httpd state=restarted
+
+
+...
+
+

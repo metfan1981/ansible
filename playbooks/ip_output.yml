@@ -1,0 +1,12 @@
+---
+  
+  - hosts: web:lb
+    become: true
+    tasks:
+      - name: check IP addresses
+        debug:
+          msg: "{{ ansible_facts.eth0.ipv4.address }}"      
+
+
+
+...

@@ -1,0 +1,19 @@
+---
+
+  - hosts: web
+    become: true
+    tasks:
+      - name: edit php.ini
+        lineinfile:
+          path: /etc/php.ini
+          regexp: ^short_open_tag
+          line: 'short_open_tag=On'
+        notify: ini modify
+
+    handlers:
+      - name: ini modify
+        service: name=httpd state=restarted
+
+...
+
+
