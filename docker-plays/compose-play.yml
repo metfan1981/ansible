@@ -1,0 +1,38 @@
+---
+
+  - name: Docker Installation
+    hosts: web
+    become: true
+    gather_facts: false
+  
+    tasks:
+      - name: PUSH Docker install-script 
+        copy:
+          src: ./get-docker.sh
+          dest: /home
+          mode: 0777
+      - name: Check if Docker installed
+        script: ./check-docker.sh
+
+
+  - name: Containers Deploy
+    hosts: web
+    become: true
+    gather_facts: false
+  
+    tasks:
+      - name: PUSH docker-compose.yml
+        copy:
+          src: ./docker-compose.yml
+          dest: /home/docker-compose.yml
+          mode: 0660
+      - name: PUSH env file
+        template:
+          src: ./env.jinja2
+          dest: /home/env
+          mode: 0660
+      - name: RUN docker-compose.yml
+        shell: /usr/local/bin/docker-compose -f /home/docker-compose.yml up -d 
+        become: yes
+
+...
