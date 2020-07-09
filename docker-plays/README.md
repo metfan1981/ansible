@@ -7,6 +7,7 @@ Playbook to install and configure Docker at managed hosts; then deploy LAMP stac
 * Edit 'env.jinja2' to pass your values:
 
 > MYSQL_ROOT_PASSWORD = password
+
 > WEB_MSG = Message to be displayed at webpage.
 
 * Run **ansible-playbook compose-play.yml** 
