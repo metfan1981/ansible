@@ -1,0 +1,11 @@
+---
+
+  - hosts: web
+    gather_facts: false
+
+    tasks:
+    - name: Destroying Compose..
+      shell: cd /home/ubuntu/ && /usr/local/bin/docker-compose rm -fs  
+      become: yes
+
+...

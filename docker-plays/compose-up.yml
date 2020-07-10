@@ -31,7 +31,7 @@
           src: ./env.jinja2
           dest: /home/env
           mode: 0660
-      - name: RUN docker-compose.yml
+      - name: Deploying Compose..
         shell: /usr/local/bin/docker-compose -f /home/docker-compose.yml up -d 
         become: yes
 

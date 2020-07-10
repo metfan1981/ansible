@@ -10,4 +10,5 @@ Playbook to install and configure Docker at managed hosts; then deploy LAMP stac
 
 > WEB_MSG = Message to be displayed at webpage.
 
-* Run **ansible-playbook compose-play.yml** 
+* To deploy compose, run  **ansible-playbook compose-up.yml**  
+* To destroy compose, run **ansible-playbook compose-destroy.yml** 
