@@ -1,0 +1,17 @@
+---
+  - hosts: test
+    become: true
+
+
+    tasks:
+      - name: Delete LAMP stack
+        apt:
+          name:
+            - apache2
+            - mysql-server
+            - php
+            - libapache2-mod-php
+            - php-mysql
+          state: absent
+
+...
