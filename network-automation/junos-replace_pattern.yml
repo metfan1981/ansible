@@ -1,0 +1,80 @@
+---
+
+- hosts: net
+  gather_facts: no
+  vars:
+    ansible_connection: network_cli
+
+
+  tasks:
+    - name: Netconf Setup   
+      block:
+        - name: Checking NETCONF connectivity
+          wait_for:
+            host: "{{ inventory_hostname }}"
+            port: 830
+            timeout: 5
+          register: previous_netconf_status
+          retries: 1
+          delay: 5
+          until: previous_netconf_status is success
+
+        - name: get juniper facts
+          juniper_junos_facts:
+          register: junos_facts
+          retries: 1
+          delay: 5
+          until: junos_facts is success
+
+      rescue:
+        - name: delete netconf
+          junos_command:
+            commands:
+              - configure exclusive
+              - rollback
+              - delete system services netconf
+              - delete groups baseline system services netconf
+              - commit comment "delete netconf"
+          register: delete_netconf
+          retries: 2
+          delay: 5
+          until: delete_netconf is success
+
+        - name: enable and allow netconf
+          junos_command:
+            commands:
+              - configure exclusive
+              - rollback
+              - set system services netconf ssh port 830
+              - set firewall family inet filter loopback term temp-accept-netconf from destination-port 830
+              - set firewall family inet filter loopback term temp-accept-netconf from protocol tcp
+              - set firewall family inet filter loopback term temp-accept-netconf then accept
+              - commit comment "temp netconf"
+          register: allow_netconf
+          retries: 2
+          delay: 5
+          until: allow_netconf is success
+
+        - name: get juniper facts
+          juniper_junos_facts:
+          register: junos_facts
+          retries: 1
+          delay: 5
+          until: junos_facts is success
+
+    - name: replace DHCP
+      junos_command:
+        commands:
+          - configure exclusive
+          - rollback
+          - replace pattern 10.201.164.10 with 10.21.18.96
+          - replace pattern 10.201.164.11 with 10.21.19.131
+          - replace pattern 10.35.32.109 with 10.35.32.114
+          - replace pattern 10.35.22.35 with 10.35.23.191
+          - show | compare
+          - commit comment "replace dhcp"
+      register: replace_dhcp
+
+    - name: print replace DHCP
+      debug:
+        msg: "{{ replace_dhcp['stdout_lines'][-2] }}"
