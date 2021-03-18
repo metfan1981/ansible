@@ -1,0 +1,9 @@
+---
+- name: Setup FRR
+  hosts: frr
+  become: true
+
+  tasks:
+    - name: include frr role
+      include_role:
+        name: mrlesmithjr.frr

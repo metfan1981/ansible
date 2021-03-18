@@ -1,0 +1,12 @@
+---
+- name: Junos config
+  hosts: junos
+  connection: local
+  gather_facts: false
+
+  tasks:
+    - name: Setup hostname
+      junos_config:
+        lines:
+          - "set system host-name {{ inventory_hostname }}"
+        comment: 'hostname by ANSIBLE'

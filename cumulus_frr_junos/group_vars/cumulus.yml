@@ -1,0 +1,4 @@
+---
+eth0_shared_args:
+  - post-up ip route add default via 172.16.0.10 dev eth0 table mgmt
+  - post-up ip route add 172.16.0.0/24 dev eth0 table mgmt

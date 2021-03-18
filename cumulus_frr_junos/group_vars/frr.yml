@@ -1,0 +1,9 @@
+---
+frr_enable_vtysh: true
+routing_type: frr
+frr_logging: syslog
+frr_reload: true
+frr_no_ebgp_requires_policy: false
+
+frr_use_upstream_repo_debian: true
+frr_version: "7.0"

@@ -1,0 +1,27 @@
+# Ansible-managed
+# DO NOT EDIT MANUALLY: WILL BE OVERWRITTEN!
+
+{% if cumulus.interfaces is defined %}
+{%     for iface in cumulus.interfaces     %}
+auto {{ iface.device }}
+iface {{ iface.device }}
+{%         if iface.v4 is defined          %}
+    address {{ iface.v4 }}
+{%         endif         %}
+{%         if iface.v6 is defined          %}
+    address {{ iface.v6 }}
+{%         endif         %}
+{%         if iface.vrf is defined         %}
+    vrf {{ iface.vrf }}
+{%         endif         %}
+{%         if iface.mtu is defined         %}
+    mtu {{ iface.mtu }}
+{%         endif         %}
+{%         if iface.args is defined        %}
+{%     for arg in iface.args               %}
+    {{ arg }}
+{%         endfor                          %}    
+{%         endif                           %}
+
+{% endfor %}
+{% endif %}

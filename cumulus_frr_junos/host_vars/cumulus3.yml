@@ -1,0 +1,56 @@
+---
+cumulus:
+  interfaces:
+    - device: lo
+      v4: 20.100.100.100/32
+    
+    - device: eth0
+      v4: 172.16.0.11/24
+      vrf: mgmt
+      args: "{{ eth0_shared_args }}"
+
+    - device: mgmt
+      v4: 127.0.0.1/8
+      v6: ::1/128
+      args:
+        - vrf-table auto
+
+    - device: swp[1-7]
+
+    - device: swp8
+      args:
+        - bridge-access 9  
+
+    - device: bridge
+      args:
+        - bridge-vlan-aware yes
+        - bridge-stp yes
+        - bridge-vids 9 5
+        - bridge-pvid 1
+        - bridge-ports swp1 swp8
+
+    - device: bridge.5
+      v4: 10.5.0.1/24
+
+    - device: bridge.9
+      v4: 10.9.0.1/24
+
+frr_daemons:
+  zebra: true
+  bgpd: true
+  ospfd: false
+  bfdd: false
+frr_router_id: 10.5.0.1
+frr_bgp:
+  asns:
+    1:
+      log_neighbor_changes: true
+      no_ebgp_requires_policy: true
+      neighbors:
+        10.5.0.2:
+          asn: 1
+          default_originate: false
+          af_v4:
+            - "soft-reconfiguration inbound"
+      redistribute:
+        - connected

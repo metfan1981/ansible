@@ -1,0 +1,4 @@
+---
+- import_playbook: playbooks/cumulus.yml
+- import_playbook: playbooks/frr.yml
+- import_playbook: playbooks/junos.yml

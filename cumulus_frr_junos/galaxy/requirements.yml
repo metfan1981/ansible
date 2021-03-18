@@ -1,0 +1,7 @@
+---
+# install these with: ansible-galaxy role install -r galaxy/requirements.yml --force
+
+roles:
+  - name: mrlesmithjr.ansible-frr
+    scm: git
+    src: https://github.com/mrlesmithjr/ansible-frr.git

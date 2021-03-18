@@ -1,0 +1,6 @@
+---
+ansible_command_timeout: 30
+ansible_persistent_command_timeout: 30
+ansible_connection: netconf
+ansible_network_os: junos
+ansible_python_interpreter: python
